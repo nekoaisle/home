@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+<title>Nekoaisle's Start page.</title>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/jquery.zrssfeed.css" type="text/css" />
+
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.parse-url.js"></script>
+<script type="text/javascript" src="js/jquery.md5.js"></script>
+<script type="text/javascript" src="js/jquery.zrssfeed.js"></script>
+<script type="text/javascript" src="js/kya-rss.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	/**
+	 * リンクボタンの設置
+	 */
+	$( "#button" ).linkBox( { 
+		data: {
+			"Google NEWS" : {
+				url: "https://news.google.co.jp/",
+				img: "google-news.png",
+				title: "ニュース",
+			},
+			"GMail" : {
+				url: "https://mail.google.com/mail/ca/u/0/",
+				img: "gmail.png",
+				title: "GMail",
+			},
+			"Google Calendar" : {
+				url: "https://www.google.com/calendar/render?tab=cc#g",
+				img: "google-calendar.png",
+				title: "Google カレンダー",
+			},
+			"Google Contacts" : {
+				url: "https://contacts.google.com/",
+				img: "google-contacts.png",
+				title: "連絡先",
+			},
+			"Google Photo" : {
+				url: "https://plus.google.com/photos/search/%23AutoBackup",
+				img: "google-photo.png",
+				title: "Google+ フォト",
+			},
+			"Google Keep" : {
+				url: "https://drive.google.com/keep/",
+				img: "google-keep.png",
+				title: "Google Keep",
+			},
+			"Google Play" : {
+				url: "https://play.google.com/store",
+				img: "google-play.png",
+				title: "Google Play",
+			},
+			"Google Translate" : {
+				url: "https://translate.google.co.jp/?hl=ja",
+				img: "google-translate.png",
+				title: "Google 翻訳",
+			},
+			"Twitter" : {
+				url: "https://twitter.com/",
+				img: "twitter.png",
+				title: "Twitter",
+			},
+			"Evernote" : {
+				url: "https://www.evernote.com/Home.action",
+				img: "evernote.png",
+				title: "Evernote",
+			},
+			"NVITIME" : {
+				url: "http://www.navitime.co.jp/",
+				img: "navitime.png",
+				title: "NAVITIME",
+			},
+			"Amazon" : {
+				url: "https://www.amazon.co.jp/?&tag=shihoriwish-22&linkCode=wsw",
+				img: "amazon.png",
+				title: "Amazon",
+			},
+		}
+	});
+
+});
+</script>
+<script src="//j.wovn.io/0" data-wovnio="key=tFu56"></script>
+
+</head>
+
+<body>
+	<!-- ヘッダー -->
+	<div id="header">
+	</div>
+
+	<!-- リンクボタン -->
+	<div id="button">
+	</div>
+
+	<!-- 検索 -->
+	<!-- Google-->
+	<div id="search">
+		<div class="item">
+			<form method="get" action="https://www.google.co.jp/search" target="_blank">
+				<input type="hidden" name="ie" value="UTF-8">
+				<input type="hidden" name="oe" value="UTF-8">
+				<input type="hidden" name="hl" value="ja">
+				<div class="form">
+					<div class="icon"><img src="https://www.google.co.jp/favicon.ico" width="32" /></div>
+					<div class="text"><input type="text" name="q" maxlength="255" value=""></div>
+					<div class="button"><input type="submit" name=btnG value="検索"></div>
+				</div>
+			</form>
+		</div><!--form-->
+
+		<div class="space"></div>
+
+		<!-- wikipedia -->
+		<div class="item">
+			<form action="https://ja.wikipedia.org/w/index.php" target="_blank">
+				<div class="form">
+					<div class="icon"><img src="https://ja.wikipedia.org/favicon.ico" width="32" /></div>
+					<div class="text"><input type="search" name="search" /></div>
+					<div class="button">
+						<input type="submit" name="fulltext" value="全文" />
+						<input type="submit" name="go" value="単語" />
+					</div>
+				</div>
+		</div><!--form-->
+		</form>
+
+		<div class="space"></div>
+
+		<!-- Amazon-->
+		<div class="item">
+			<form method="get" action="https://www.amazon.co.jp/gp/search" target="_blank">
+				<div class="form">
+					<div class="icon"><img src="https://www.amazon.co.jp/favicon.ico" width="32" /></div>
+					<div class="text">
+						<input name="keywords" type="text" />
+<!--					<select name="m">
+							<option value="aps" selected="selected">すべての商品</option>
+							<option value="stripbooks">和書</option>
+							<option value="english-books">洋書</option>
+							<option value="electronics">家電&カメラ</option>
+							<option value="toys">おもちゃ&ホビー</option>
+							<option value="kitchen">ホーム&キッチン</option>
+							<option value="videogames">ゲーム</option>
+							<option value="software">PCソフト</option>
+							<option value="popular">ミュージック</option>
+							<option value="dvd">DVD</option>
+							<option value="watch">時計</option>
+							<option value="food-beverage">食品&飲料</option>
+							<option value="sporting">スポーツ&アウトドア</option>
+							<option value="hpc">ヘルス&ビューティー</option>
+							<option value="apparel">アパレル&ファッション雑貨</option>
+							<option value="beauty">コスメ</option>
+							<option value="baby">ベビー&マタニティ</option>
+							<option value="classical">クラシック音楽</option>
+						</select>&nbsp;
+-->
+					</div>
+					<div class="button">
+						<input name="submit" type="submit" value="検索" />
+						<input type="hidden" name="tag" value="shihoriwish-22" />
+					</div>
+				</div>
+			</form>
+		</div><!--form-->
+
+		<div class="space"></div>
+
+		<!-- Google Play -->
+		<div class="item">
+			<form method="get" action="https://play.google.com/store/search" target="_blank">
+				<div class="form">
+					<div class="icon"><img src="https://ssl.gstatic.com/android/market_images/web/favicon.ico" width="32" /></div>
+					<div class="text"><input name="q" type="text" /></div>
+					<div class="button"><input name="submit" type="submit" value="検索" /></div>
+				</div>
+			</form>
+		</div><!--form-->
+	</div>
+
+	<!-- ニュース -->
+	<div class="feeds">
+		<div class="feed">
+			<div class="header">
+				<div class="title">テクノロジー</div>
+				<div class="space"></div>
+				<div class="count"><span class="unread"></span>/<span class="total"></span></div>
+				<div class="space"></div>
+				<div class="date"></div>
+				<div class="space"></div>
+				<div class="reload"><button></button></div>
+			</div>
+			<div class="articles" data-topic="t" ></div>
+		</div>
+		<div class="feed">
+			<div class="header">
+				<div class="title">ビジネス</div>
+				<div class="space"></div>
+				<div class="count"><span class="unread"></span>/<span class="total"></span></div>
+				<div class="space"></div>
+				<div class="date"></div>
+				<div class="space"></div>
+				<div class="reload"><button></button></div>
+			</div>
+			<div class="articles" data-topic="b" ></div>
+		</div>
+		<div class="feed">
+			<div class="header">
+				<div class="title">トップ</div>
+				<div class="space"></div>
+				<div class="count"><span class="unread"></span>/<span class="total"></span></div>
+				<div class="space"></div>
+				<div class="date"></div>
+				<div class="space"></div>
+				<div class="reload"><button></button></div>
+			</div>
+			<div class="articles" data-topic=""></div>
+		</div>
+	</div>
+
+	<!-- フッター -->
+	<div class="footer">
+		Copyright &copy; 2015- Yoshio Kiya All rights reserved.
+	</div>
+
+</body>
+</html>

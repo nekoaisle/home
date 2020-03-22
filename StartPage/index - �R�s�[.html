@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+<title>Nekoaisle's Start page.</title>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="js/CustomRssReader_Ver0103.js"></script>
+
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	var rssList = new Array();
+	var sortItem;
+	var rssItemLimit;
+	var displayItem = new Array();
+	var titleLength;
+	var descriptionLength;
+	var dateFormat;
+	var effectSpeed;
+	var newmark = Array();
+	var thumnail = Array();
+
+	/********** javascriptのカスタマイズはここから ***********/
+
+	//【読み込みたいRSS】
+	//　categoryを画像URLにすると画像が表示
+	rssList.push({ url: "https://news.google.com/news?hl=ja&ned=us&ie=UTF-8&oe=UTF-8&output=rss&topic=t&num=100", category: "Googleニュース" });
+
+	//【何を表示するか】
+	//　"seq" "title" "category" "date" "newmark" "bookmark"から選択可能
+	displayItem = {0: "title", 1: "date"};
+
+	//【ソート方法】
+	//　nameは"seq" "title" "category" "date" から選択可能
+	//　toは"down"（降順） "up"（昇順）から選択可能
+	sortItem = {"name": "date", "to": "down"};
+
+	//【各RSSの記事数】
+	rssItemLimit = 10;
+
+	//【タイトルの文字数】
+	titleLength = 100;
+
+	//【要約の文字数】
+	//　要約とはマウスオーバー時の記事本文
+	descriptionLength = 60;
+
+	//【日付の形式】
+	//　{Y2}　下2桁の年
+	//　{Y4}　4桁の年
+	//　{M}　 月
+	//　{ME}　英語の月
+	//　{D}　 日
+	//　{h}　 時
+	//　{m}　 分
+	//　{s}　 秒
+	//　{y}　 曜日
+	//　{yE}　英語の曜日
+	dateFormat = "{M}/{D}({y}) {h}:{m}";
+
+	//【アニメーション実行時間】
+	//　単位は秒
+	//　長くすると環境によっては重たくなります
+	effectSpeed = 0.3;
+
+	//【Newマーク】
+	//　displayItemでnewmarkを設定していないと機能しません
+	//　nameを画像URLにすると画像が表示、テキストだとテキストを表示
+	//　hourで今から何時間内の記事に対してマークをつけるか
+	newmark = {"name": "https://blog-imgs-29.fc2.com/h/k/d/hkdesign/newIcon01.gif", "hour": 24};
+
+	//【サムネイル表示設定】
+	//　マウスオーバーでサムネイルを表示するかどうか
+	//　modeの"on"　"off"で切替可能
+	//　sizeは"s" "m" "l"から選択可能
+	//　xとyは画像の設置場所それぞれマウスポインタからの設置座標
+	//　アダルト系サイトの画像表示は禁止します
+	thumnail = {"mode": "off", "size": "s", "x": 0, "y": -100};
+
+	/********** javascriptのカスタマイズはここまで ***********/
+
+
+	$("#CustomRssReaderArea").CustomRssReader({
+		"rssArr"           : rssList, 
+		"displayItem"      : displayItem, 
+		"sortItem"         : sortItem, 
+		"rssItemLimit"     : rssItemLimit, 
+		"titleLength"      : titleLength, 
+		"descriptionLength": descriptionLength, 
+		"dateFormat"       : dateFormat, 
+		"effectSpeed"      : effectSpeed, 
+		"newmark"          : newmark, 
+		"thumnail"         : thumnail
+	});
+ });
+-->
+
+</script>
+</head>
+
+<body>
+<h1>Google NEWS テクノロジー</h1>
+
+<div id="CustomRssReaderArea"></div>
+
+</body>
+</html>

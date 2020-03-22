@@ -1,0 +1,56 @@
+<?php
+	$p = objGetApp( );
+
+	foreach ( $p->m_aryCols as $iCol => $aryRows )
+	{
+		if ( $iCol > 0 )
+		{
+?>
+<div class="gripper"><div class="bar"></div></div>
+<?php
+		}
+?>
+<div class="column" id="<?php echo "col{$iCol}"; ?>">
+<?php
+		foreach ( $aryRows as $iRow => $aryWidget )
+		{
+			$strHref = !empty( $aryWidget['link'] ) ? " href=\"{$aryWidget['link']}\"" : "";
+?>
+	<div class="widget" id="<?php echo "row{$iCol}{$iRow}"; ?>">
+		<!-- タイトルバー -->
+		<div class="head">
+			<a <?php echo $strHref; ?>>
+				<!--アイコン-->
+<?php if ( !empty( $aryWidget['icon'] ) ) {?>
+				<img src="<?php echo $aryWidget['icon']; ?>" />
+<?php } ?>
+				<!--タイトル-->
+				<?php echo $aryWidget["title"]; ?>
+			</a>
+			<!--右端のボタン-->
+			<div style="float:right;">
+				<img src="/icon/reload.png" class="button balloon" title="更新"       data-dsp='{"cmd":"reload"}' />
+				<img src="/icon/option.png" class="button balloon" title="オプション" data-dsp='{"cmd":"menu","menu":"div.menu"}' />
+			</div>
+			<br style="clear:both;" />
+		</div>
+
+		<!-- オプションメニュ -->
+		<div class="menu dspMenu">
+			<div class="item" data-dsp='{"cmd":"preference"}'><img src="/icon/mod.png" />変更</div>
+			<div class="item" data-dsp='{"cmd":"remove","id":"<?php echo "{$aryWidget['id']}"; ?>"}'><img src="/icon/del.png" />削除</div>
+		</div>
+
+		<!-- 本体 -->
+		<div class="body">
+			<iframe<?php if ( !empty( $aryWidget['fit'] ) ) {?> class="autoHeight"<?php } ?> src="<?php echo "/parts/{$aryWidget['id']}.html"; ?>" width="100%" height="<?php echo $aryWidget['height']; ?>"></iframe>
+		</div>
+	</div>
+<?php
+		}
+?>
+</div>
+<?php
+	}
+?>
+<div style="clear:both"></div>

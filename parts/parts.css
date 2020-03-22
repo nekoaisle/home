@@ -1,0 +1,45 @@
+body, div, dt, dd, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+dl, ul, ol {
+    margin: 0;
+    padding-left: 2em;
+}
+
+body {
+	width: 100%;
+	color:#333333;
+	font-size: 0.75em;
+	font-family:Meiryo,"メイリオ","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3",Osaka,"MS P Gothic","ＭＳ Ｐゴシック",Verdana,Arial,sans-serif;
+	line-height:1.3em;
+	margin: 0px;
+	padding: 0px;
+	background-color: #FFFFFF;
+}
+
+* html body {	/* for IE6 */
+	font-family:Meiryo,"メイリオ","ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
+}
+
+input, select {
+	border: 1px #CCCCCC solid;
+	color:#000000;
+	font-size: 1.0em;
+	font-family:Meiryo,"メイリオ","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3",Osaka,"MS P Gothic","ＭＳ Ｐゴシック",Verdana,Arial,sans-serif;
+}
+
+input, textarea {
+	padding: 4px 4px;
+}
+
+iframe {
+	border: 0px;
+}
+
+.clear {
+	clear: both;
+}
+
+

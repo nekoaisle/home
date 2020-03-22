@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<link href="./style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+</style>
+<meta name="ROBOTS" content="NOINDEX,NOFOLLOW,NOARCHIVE" />
+<title>DSPortal <!--~@macro head:title:text--><!--@macro head:title:text~--></title>
+
+<!--~@macro head:add-->
+<script src="/libjs/store.js"></script>
+<script src="/libjs/md5.js"></script>
+
+<script src="/js/dspLayout.js"></script>
+<script src="/js/dspLinkbar.js"></script>
+<script src="/js/dspTabbar.js"></script>
+<script src="/js/dspWidget.js"></script>
+<script src="/js/dspDraggable.js"></script>
+<script src="/js/dspButton.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	//=== 一旦高さを大きめに設定 =====================================
+	$(document).height( 2000 );
+
+	//=== リンクバー関連 =============================================
+	$("div.link_bar").dspLinkbar( );
+
+	//=== タブバー関連 ===============================================
+	$("div.tab_bar").dspTabbar( );
+
+	//=== ハッシュ変更イベント =======================================
+	$(window).hashchange(
+	{
+		callback: function()
+		{
+			// ハッシュによってタブを切り替える
+			// contents? を表示し url をセットする
+			var no = (location.hash.length >= 2) ? location.hash.substr(1) : "0";
+			var tabs = $("div.tab_bar div.tab");
+			tabs.each( function()
+			{
+				if ( $(this).attr( "data-no" ) == no )
+				{
+					$(this).click();
+					return false;
+				}
+				return true;
+			});
+		}
+	});
+	$(window).hashchange();
+
+	//=== 別プロセスでリンクを開く ===================================
+	$("body").on( "click.dspCommon", "a", function(e)
+	{
+		if ( this.href && (location.hostname != this.hostname) )
+		{
+			var wo = window.open();
+			wo.opener = null;
+			wo.location.href = this.href;
+			return false;
+		}
+		return true;
+	});
+
+//	$(document).on("load", "iframe", function(){
+//		// 高さの調整
+//		$(this).height(this.contentWindow.document.documentElement.scrollHeight);
+//		// 幅の調整
+//		$("tabbody").each(function(id){
+//			$.dspWidget.renumberWidget(this);
+//		});
+//	});
+//	$('iframe').triggerHandler('load');
+});
+
+</script>
+<!--@macro head:add~-->
+</head>
+<body>
+<div class="container">
+<!--
+//====================================================================
+// ヘッダー
+//====================================================================
+-->
+<!--~@macro body:header-->
+<!-- リンクバー ===================================================-->
+<div class="link_bar">
+<!--~@list m_aryLinkBar:row-->
+	<div class="link" data-id="<!--~m_aryLinkBar["id"]~-->">
+			<!--~m_aryLinkBar["icon"]--><a href="<!--~m_aryLinkBar["url"]~-->" target="_blank"><img class="icon" src="<!--~m_aryLinkBar["icon"]~-->" /></a><!--m_aryLinkBar["icon"]~-->
+		<a href="<!--~m_aryLinkBar["url"]~-->" target="_blank"><!--~m_aryLinkBar["title"]~--></a>
+		<img src="/icon/option.png" class="button" title="オプション" data-dsp='{"cmd":"menu","menu":"div.menu"}' />
+		<div class="menu dspMenu">
+			<div class="item" data-dsp='{"cmd":"dialog","id":"#link_dialog"}'><img src="/icon/mod.png" />変更</div>
+			<div class="item" data-dsp='{"cmd":"remove"}'><img src="/icon/del.png" />削除</div>
+		</div>
+	</div>
+<!--@list m_aryLinkBar:row~-->
+	<!-- 追加ボタン -->
+	<div class="add" data-dsp='{"cmd":"dialog","id":"#link_dialog"}'>
+		<img class="button" src="/icon/add.png" title="追加" />
+	</div>
+
+	<div class="spacer"></div>
+
+	<div class="login">
+<!--~@if APP:m_iLoginLevel <= 0-->
+		<a href="login.html">ログイン</a>
+<!--@if APP:m_iLoginLevel <= 0~-->
+<!--~@if APP:m_iLoginLevel > 0-->
+		<!--~APP:m_rowUser["V_EMAIL"]~-->様 <a href="logout.html">ログアウト</a>
+<!--@if APP:m_iLoginLevel > 0~-->
+	</div>
+	<br style="clear:both;" />
+
+</div><!--link_bar-->
+<!--@macro body:header~-->
+
+<!--
+//====================================================================
+// メインエリア
+//====================================================================
+-->
+<!--~@macro body:main-->
+<div class="main">
+
+<!-- Google検索 ===================================================-->
+<div class="search">
+	<div class="form">
+		<form method="get" action="http://www.google.co.jp/search" target="_blank">
+			<img src="http://www.google.co.jp/favicon.ico" width="16" />
+			<input type="text" name="q" maxlength="255" value="">
+			<input type="hidden" name="ie" value="UTF-8">
+			<input type="hidden" name="oe" value="UTF-8">
+			<input type="hidden" name="hl" value="ja">
+			<input type="submit" name=btnG value="検索">
+		</form>
+	</div><!--form-->
+
+	<div class="space"></div>
+
+	<div class="form">
+		<form action="http://ja.wikipedia.org/w/index.php" target="_blank">
+			<img src="http://ja.wikipedia.org/favicon.ico" width="16" />
+			<input type="text" name="search" />
+			<input type="submit" name="fulltext" value="全文" />
+			<input type="submit" name="go" value="単語" />
+		</form>
+	</div><!--form-->
+
+	<div class="space"></div>
+
+	<div class="form">
+		<form method="get" action="http://www.amazon.co.jp/gp/search" target="_blank">
+			<img src="http://www.amazon.co.jp/favicon.ico" width="16" />
+			<input name="keywords" type="text" />
+<!--			<select name="m">
+				<option value="aps" selected="selected">すべての商品</option>
+				<option value="stripbooks">和書</option>
+				<option value="english-books">洋書</option>
+				<option value="electronics">家電&カメラ</option>
+				<option value="toys">おもちゃ&ホビー</option>
+				<option value="kitchen">ホーム&キッチン</option>
+				<option value="videogames">ゲーム</option>
+				<option value="software">PCソフト</option>
+				<option value="popular">ミュージック</option>
+				<option value="dvd">DVD</option>
+				<option value="watch">時計</option>
+				<option value="food-beverage">食品&飲料</option>
+				<option value="sporting">スポーツ&アウトドア</option>
+				<option value="hpc">ヘルス&ビューティー</option>
+				<option value="apparel">アパレル&ファッション雑貨</option>
+				<option value="beauty">コスメ</option>
+				<option value="baby">ベビー&マタニティ</option>
+				<option value="classical">クラシック音楽</option>
+			</select>&nbsp;
+-->			<input name="submit" type="submit" value="検索" />
+			<input type="hidden" name="tag" value="shihoriwish-22" />
+		</form>
+	</div><!--form-->
+
+	<div class="space"></div>
+
+	<div class="form">
+		<form method="get" action="https://play.google.com/store/search" target="_blank">
+			<img src="https://ssl.gstatic.com/android/market_images/web/favicon.ico" width="16" />
+			<input name="q" type="text" />&nbsp;
+			<input name="submit" type="submit" value="検索" />
+		</form>
+	</div><!--form-->
+</div>
+
+
+<!-- タブバー =====================================================-->
+<div class="tab_bar">
+<!--~@list m_aryTabs:row-->
+	<div class="tab" data-no="<!--~key(m_aryTabs)~-->">
+		<!--~m_aryTabs["icon"]--><img class="icon" src="<!--~m_aryTabs["icon"]~-->" /><!--m_aryTabs["icon"]~-->
+		<span class="title"><!--~m_aryTabs["title"]~--></span>
+		<img src="/icon/option.png" class="button" title="オプション" data-dsp='{"cmd":"menu","menu":"div.menu"}' />
+		<div class="menu dspMenu">
+			<div class="item" data-dsp='{"cmd":"dialog","id":"#tab_dialog"}'><img src="/icon/mod.png" />変更</div>
+			<div class="item" data-dsp='{"cmd":"remove"}'><img src="/icon/del.png" />削除</div>
+		</div>
+	</div>
+<!--@list m_aryTabs:row~-->
+
+	<div class="spacer"></div>
+
+	<!-- オプションボタン -->
+	<div class="tab option" data-no="-1">
+		<img src="/icon/menu.png" class="button balloon" title="追加" data-dsp='{"cmd":"menu","menu":"div.menu"}' />
+		<div class="menu dspMenu">
+			<div class="item" data-dsp='{"cmd":"dialog","id":"#tab_dialog"}'   ><img src="/icon/add.png" />タブを追加</div>
+			<div class="item" data-dsp='{"cmd":"dialog","id":"#widget_add_dialog"}'><img src="/icon/add.png" />ウィジェットを追加</div>
+		</div>
+	</div>
+	<br style="clear:both;" />
+</div>
+
+<!-- コンテンツ領域本体 ===========================================-->
+<div class="padding">
+	<div id="tabbody0" class="tabbody dspTabbody"></div>
+	<div id="tabbody1" class="tabbody dspTabbody"></div>
+	<div id="tabbody2" class="tabbody dspTabbody"></div>
+	<div id="tabbody3" class="tabbody dspTabbody"></div>
+	<div id="tabbody4" class="tabbody dspTabbody"></div>
+	<div id="tabbody5" class="tabbody dspTabbody"></div>
+	<div id="tabbody6" class="tabbody dspTabbody"></div>
+	<div id="tabbody7" class="tabbody dspTabbody"></div>
+	<div id="tabbody8" class="tabbody dspTabbody"></div>
+	<div id="tabbody9" class="tabbody dspTabbody"></div>
+</div>
+
+</div><!--main-->
+<!--@macro body:main~-->
+
+<!--
+//====================================================================
+// フッターエリア
+//====================================================================
+-->
+<div class="footer">
+	<hr>
+	Copyrigths &copy;2014- Prograrts.com
+</div>
+
+<!--
+//====================================================================
+// ダイアログエリア
+//====================================================================
+-->
+<!--~@macro body:dialog-->
+<!-- リンクバー設定 ===============================================-->
+<div id="link_dialog" class="dialog dspDialog">
+	<form method="post" action="">
+	<input type="hidden" name="V_ID" value="" />
+	<table>
+		<tr><td colspan="2">
+			<span class="title">リンクボタン</span>
+			<div style="float:right;"><img class="close button" title="閉じる" src="/icon/close.png" /></div>
+			<br style="clear:both;" />
+		</td></tr>
+		<tr>
+			<th nowrap>アイコン</th>
+			<td>
+				<ul class="icon">
+<!--~@list m_aryIcon:row-->
+				<li><input type="radio" name="V_ICON" value="<!--~m_aryIcon["file"]~-->" /><!--~m_aryIcon["img"]--><img src="<!--~m_aryIcon["img"]~-->" /><!--m_aryIcon["img"]~-->&nbsp;</li>
+<!--@list m_aryIcon:row~-->
+				</ul>
+			</td>
+		</tr>
+		<tr><th nowrap>タイトル</th><td><input type="text" name="V_TITLE" /></td></tr>
+		<tr><th nowrap>リンク先</th><td><input type="text" name="V_URL"   /></td></tr>
+		<tr>
+			<th nowrap></th>
+			<td>
+				<input type="submit" name="LINK_MOD" value="変更" />
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>
+
+<!-- ウィジェット追加 =============================================-->
+<div id="widget_add_dialog" class="dialog dspDialog">
+	<form method="post" action="">
+	<table>
+		<tr><td colspan="2">
+			<span class="title">ウィジェット</span>
+			<div style="float:right;"><img class="close button" title="閉じる" src="/icon/close.png" /></div>
+			<br style="clear:both;" />
+		</td></tr>
+
+		<tr>
+			<th nowrap>対象タブ</th>
+			<td>
+				<select name="V_TAB">
+<!--~@list m_aryTabs2:row-->
+					<option value="<!--~key(m_aryTabs2)~-->"><!--~m_aryTabs2["title"]~--></option>
+<!--@list m_aryTabs2:row~-->
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap>追加するWidget</th>
+			<td>
+				<select name="V_WIDGET">
+<!--~@list m_aryWidget:row-->
+					<option value="<!--~key(m_aryWidget)~-->"><!--~m_aryWidget["title"]~--></option>
+<!--@list m_aryWidget:row~-->
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<th nowrap></th>
+			<td><input type="submit" name="WIDGET_ADD" value="ウィジェットを追加" /></td>
+		</tr>
+	</table>
+	</form>
+</div>
+
+<!-- タブを追加 ===================================================-->
+<div id="tab_dialog" class="dialog dspDialog">
+	<form method="post" action="">
+	<table>
+		<tr><td colspan="2">
+			<span class="title">タブ</span>
+			<div style="float:right;"><img class="close button balloon" title="閉じる" src="/icon/close.png" /></div>
+			<br style="clear:both;" />
+		</td></tr>
+
+		<tr>
+			<th nowrap>アイコン</th>
+			<td>
+				<ul class="icon">
+<!--~@list m_aryIcon2:row-->
+				<li><input type="radio" name="V_ICON" value="<!--~m_aryIcon2["file"]~-->" /><!--~m_aryIcon2["img"]--><img src="<!--~m_aryIcon2["img"]~-->" /><!--m_aryIcon2["img"]~-->&nbsp;</li>
+<!--@list m_aryIcon2:row~-->
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<th nowrap>タイトル</th>
+			<td><input type="text" name="V_TITLE" /></td>
+		</tr>
+
+		<tr>
+			<th nowrap></th>
+			<td><input type="submit" name="TAB_ADD" value="タブを追加" /></td>
+		</tr>
+	</table>
+	</form>
+</div>
+
+<!--@macro body:dialog~-->
+
+<!--
+//====================================================================
+//====================================================================
+//====================================================================
+-->
+</div><!--container-->
+</body>
+</html>

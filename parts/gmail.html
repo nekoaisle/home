@@ -1,0 +1,33 @@
+<!--
+//====================================================================
+// Widget GMail
+//====================================================================
+-->
+<div id="trace"></div>
+<script type="text/javascript" src="../js/jquery.base64.js"></script>
+<script type="text/javascript">
+/*XMLロード処理*/
+$(function(){
+	$.ajax({
+		  url:'https://mail.google.com/mail/feed/atom/'
+		, type:'GET'
+		, dataType:'xml'
+		, timeout:1000
+		// XMLロード失敗処理
+		, error:function (xhr, textStatus, errorThrown){
+			alert("ロード失敗");
+		}
+		// XMLロード成功処理
+		, success: function (xml){
+			alert("ロード成功");
+			$("#trace").append($(xml.responseText));
+		}
+//		, beforeSend: function(xhr) {
+//			var credentials = $.base64.encode("ja1gji@gmail.com:kiya0522");
+//		    xhr.setRequestHeader("Authorization", "Basic " + credentials);
+//		}
+		, username:'ja1gji@gmail.com'
+		, password:'kiya0522'
+	});
+});
+</script>

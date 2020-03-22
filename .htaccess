@@ -1,0 +1,33 @@
+DirectoryIndex top.html
+
+RewriteEngine on
+
+#=== サブディレクトリーへのHTMLアクセスはphpで処理 ===================
+RewriteCond %{QUERY_STRING} (.+)
+# Queryあり /test/xxx.html?callback=xxx -> /test.php?NAME=xxx&callback=xxx
+RewriteRule ^([^/]+)/(.*)\.(html|php)$ /$1.php?NAME=$2&%1 [L]
+# Queryなし /test/xxx.html -> /test.php?NAME=xxx
+RewriteRule ^([^/]+)/(.*)\.(html|php)$ /$1.php?NAME=$2 [L]
+
+#=== PHP へのアクセス ================================================
+# test.php -> /index.php?TASK=test
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^([^\.]*)\.php$ /index.php?TASK=$1 [NS,L]
+
+#=== HTML へのアクセス ===============================================
+RewriteCond %{QUERY_STRING} (.+)
+# Queryあり top.html?id=abc -> /index.php?TSAK=top?id=abc
+RewriteRule ^([^\.]*)\.html$ /index.php?TASK=$1&%1 [L]
+# Queryなし top.html -> /index.php?TASK=top
+RewriteRule ^([^\.]*)\.html$ /index.php?TASK=$1 [L]
+
+#=== コマンド処理 ====================================================
+# /GOTO/top -> /index.php?GOTO=top
+# /CALL/top -> /index.php?CALL=top
+#RewriteRule ^/(GOTO|CALL)/([0-9A-Za-z_]*)$ /index.php?$1=$2 [L]
+
+# /SUBMIT -> /index.php?SUBMIT=
+# /CANCEL -> /index.php?CANCEL=
+# /RETURN -> /index.php?RETURN=
+#RewriteRule ^/(SUBMIT|CANCEL|RETURN)$ /index.php?$1= [L]

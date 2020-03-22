@@ -1,0 +1,572 @@
+body {
+	width: 100%;
+	color:#333333;
+	font-size: 16px;
+	font-family:Meiryo,"メイリオ","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3",Osaka,"MS P Gothic","ＭＳ Ｐゴシック",Verdana,Arial,sans-serif;
+	line-height:1.3em;
+	margin: 0px;
+	padding: 0px;
+	background-color: #CCCCCC;
+}
+
+* html body {	/* for IE6 */
+	font-family:Meiryo,"メイリオ","ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
+}
+
+body, div, dt, dd, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+dl, ul, ol {
+    margin: 0;
+    padding-left: 1em;
+}
+
+a:link    { color: #0066FF; }
+a:visited { color: #FF6600; }
+
+input, select {
+	border: 1px #CCCCCC solid;
+	color:#000000;
+	font-size: 0.875em;
+	font-family:Meiryo,"メイリオ","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3",Osaka,"MS P Gothic","ＭＳ Ｐゴシック",Verdana,Arial,sans-serif;
+}
+
+input {
+	padding: 4px 4px;
+	border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #EEE;
+	background: -moz-linear-gradient(top,#FFF 0%,#AAA);
+	background: -webkit-gradient(linear, left top, left bottom, from(#FFF), to(#AAA));
+}
+
+textarea {
+	width:98%;
+	border: 1px #CCCCCC solid;
+	color:#000000;
+	padding: 4px 4px 4px;
+	font-size: 1.0em;
+}
+
+h1 {
+	font-size: 1.250em;
+}
+
+h2 {
+	font-size: 1.125em;
+	padding-top:5px;
+}
+
+h3 {
+	font-size: 1.000em;
+}
+hr {
+	border-width: 1px 0px 0px 0px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	height: 1px;
+}
+
+iframe {
+	border: 0px;
+}
+
+img {
+	border: 0px;
+}
+
+/*==================================================================*/
+/* メインコンテナ(body全体)                                         */
+/*==================================================================*/
+div.container {
+	position: relative;
+	margin: 0px;
+	width: 100%;
+	background-color: #FFFFFF;
+	border: 0px;
+}
+
+/*==================================================================*/
+/* フッター                                                         */
+/*==================================================================*/
+div.footer {
+	font-size:0.813em;
+	border-top: solid 1px #CCCCCC;
+	padding: 4px 4px;
+}
+
+/*==================================================================*/
+/* ヘッダー                                                         */
+/*==================================================================*/
+.headder a img {
+    border-style:none;
+}
+
+/*==================================================================*/
+/* よく使うスタイル                                                 */
+/*==================================================================*/
+.f16 { font-size: 1.000em 16px 12pt;}
+.f15 { font-size: 0.938em 15px 11pt;}
+.f14 { font-size: 0.875em 14px 11pt;}
+.f13 { font-size: 0.813em 13px 10pt;}
+.f12 { font-size: 0.750em 12px  9pt;}
+.f11 { font-size: 0.688em 11px  8pt;}
+.f10 { font-size: 0.625em 10px  8pt;}
+.f9  { font-size: 0.563em  9px  7pt;}
+.f8  { font-size: 0.500em  8px  6pt;}
+.f7  { font-size: 0.438em  7px  5pt;}
+.f6  { font-size: 0.375em  6px  5pt;}
+
+.red  { color: #cc0000; }
+.blue { color: #0000FF; }
+
+.m5   { margin: 5px; }
+.mt8  { margin-top: 8px; }
+.mt15 { margin-top: 15px; }
+.mb8  { margin-bottom: 8px; }
+
+.left   { text-align:left; }
+.center { text-align:center; }
+.right  { text-align:right; }
+
+/*==================================================================*/
+/* リンクバー                                                       */
+/*==================================================================*/
+div.link_bar {
+	background-color: #333333;
+	color: #FFFFFF;
+	padding: 4px 0px;
+	display: flex;
+	align-items: center;
+}
+
+/*=== リンクボタン =================================================*/
+div.link_bar>div.link {
+	position: relative;
+	font-size:0.813em;
+	text-align: center;
+	background: -moz-linear-gradient(top,#888 0%,#444);
+	background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#444));
+	border-radius: 6px;
+	margin-left: 4px;
+	padding: 0px 4px;
+
+	display: flex;
+	align-items: center;
+}
+
+div.link_bar>div.link a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+div.link_bar>div.link a:link {
+	color: #FFFFFF;
+}
+
+div.link_bar>div.link a:visited {
+	color: #FFCCCC;
+}
+
+div.link_bar>div.link img.icon {
+	width: 16px;
+	margin-right: 4px;
+}
+div.link_bar>div.link img.button {
+	width: 16px;
+	margin-left: 4px;
+	cursor: pointer;
+}
+/* オプションメニュー */
+div.link_bar>div.link div.menu {
+	display: none;
+	position:absolute;
+	right: 0px;
+	top: 18px;
+/*	font-size: 0.875em;*/
+	padding: 4px 8px;
+	background: -moz-linear-gradient(top,#888 0%,#444);
+	background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#444));
+	border-radius: 6px;
+}
+div.link_bar>div.link div.menu div.item {
+	cursor: pointer;
+	text-align: left;
+}
+div.link_bar>div.link div.menu div.item img {
+	margin-right: 4px;
+	vertical-align: middle;
+}
+
+/* スペーサー */
+div.link_bar>div.spacer {
+	flex: 1 1 0px;
+}
+
+/*=== 追加ボタン ===================================================*/
+div.link_bar>div.add {
+	margin-left: 4px;
+	cursor: pointer;
+}
+
+/*=== ログイン/ログアウト ==========================================*/
+div.link_bar>div.login {
+	display: block;
+	float: right;
+/*	width: 72px; */
+	font-size: 0.813em;
+	color: #DDDDDD;
+	text-align: center;
+	background: -moz-linear-gradient(top,#88F 0%,#448);
+	background: -webkit-gradient(linear, left top, left bottom, from(#88F), to(#448));
+	border-radius: 6px;
+	margin-left: 4px;
+	padding: 0px 8px;
+}
+
+div.link_bar>div.login a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+div.link_bar>div.login a:link {
+	color: #FFFFFF;
+}
+
+div.link_bar>div.login a:visited {
+	color: #FFCCCC;
+}
+
+/*==================================================================*/
+/* ログインフォーム                                                 */
+/*==================================================================*/
+div.main>div.login {
+	color: #333333;
+	width: 420px;
+	padding: 8px 0px;
+	margin: 0px auto;
+}
+
+div.main>div.login table {
+	width: 420px;
+	font-size: 0.875em;
+	margin: 0px auto;
+	padding: 4px;
+	background-color: #FFFFFF;
+	border: 1px #CCCCCC solid;
+	border-collapse: separate;
+	border-radius: 6px;
+}
+
+div.main>div.login div.button {
+	width:420px;
+	margin: 8px auto 0px;"
+/*	text-align: center;*/
+}
+
+div.main>div.login input {
+}
+div.main>div.login .button input{
+	width: 96px;
+}
+
+/*==================================================================*/
+/* メインエリア                                                     */
+/*==================================================================*/
+div.main {
+	background-color: #FFFFFF;
+	background-image: url( "./search.jpg");
+	background-repeat: repeat;
+/*	background-attachment: fixed;*/
+	width: 100%;
+}
+
+/*====================================================================
+	検索エリア
+====================================================================*/
+div.main>div.search {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	padding: 8px 0px;
+}
+
+div.main>div.search>div.google {
+	border: 1px #CCCCCC solid;
+	background-color: #FFFFFF;
+	border-radius: 6px;
+	opacity: 0.90;
+}
+
+div.main>div.search>div.form {
+	padding: 4px 8px;
+	border: 1px #CCCCCC solid;
+	background-color: #EEEEFF;
+	border-radius: 6px;
+	opacity: 0.90;
+}
+
+div.main>div.search>div.form input[type="text"] {
+	width: 12em;
+}
+
+div.main>div.search>div.space {
+	flex-basis: 8px;
+}
+
+/*====================================================================
+	タブエリア
+====================================================================*/
+div.tab_bar {
+	display: flex;
+	align-items: center;
+	margin: 0px 8px;
+}
+div.tab_bar div.spacer {
+	flex: 1 1 0px;
+}
+
+div.tab_bar>div.tab {
+	position: relative;
+	display: flex;
+	align-items: center;
+	color: #000000;
+	text-align: center;
+	font-size: 0.813em;
+	border: 1px #CCCCCC solid;
+	background-color: #FFFFFF;
+	opacity: 0.65;
+	margin-right: 2px;
+	padding: 2px 4px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	cursor:pointer;
+	outline:none;
+}
+
+div.tab_bar>div.dspActive {
+	border-bottom: 1px #FFFFFF solid;
+	background-color: #FFFFFF;
+	opacity: 1.00;
+}
+
+div.tab_bar>div.tab img.icon {
+	margin-right: 4px;
+}
+div.tab_bar>div.tab img.button {
+	margin-left: 4px;
+	cursor: pointer;
+}
+
+/* オプションメニュー */
+div.tab_bar>div.tab div.menu {
+	display: none;
+	position:absolute;
+	z-index: 2;
+	right: 0px;
+	top: 20px;
+/*	font-size: 0.875em;*/
+	color: #FFFFFF;
+	padding: 4px 8px;
+	background: -moz-linear-gradient(top,#888 0%,#444);
+	background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#444));
+	border-radius: 6px;
+}
+div.tab_bar>div.tab div.menu div.item {
+	cursor: pointer;
+	text-align: left;
+}
+div.tab_bar>div.tab div.menu div.item img {
+	margin-left: 0px;
+	margin-right: 0px;
+	vertical-align: middle;
+}
+
+/* タブバー右端のオプションタブ */
+div.tab_bar>div.option {
+	height: 20px;
+/*	float: right;*/
+	background-color: #DDDDDD;
+	opacity: 1.00;
+	cursor: default;
+}
+div.tab_bar>div.option img.button {
+	margin-top: 2px;
+	margin-left: 0px;
+	width: 16px;
+	cursor: pointer;
+}
+
+/* オプション */
+div.tab_bar div.option div.menu {
+	display: none;
+	position:absolute;
+	width: 96px;
+	z-index: 2;
+	right: 0px;
+	top: 20px;
+	font-size: 0.813em;
+	color: #FFFFFF;
+	padding: 4px 8px;
+	background: -moz-linear-gradient(top,#888 0%,#444);
+	background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#444));
+	border-radius: 6px;
+}
+div.tab_bar div.option div.menu div.item{
+	cursor: pointer;
+	text-align: left;
+}
+div.tab_bar div.option div.menu div.item img {
+	margin-right: 4px;
+	vertical-align: middle;
+}
+
+/* タブ ダイアログ */
+div.dialog {
+	display:none;
+	position:absolute;
+	left: 8px;
+	top: 56px;
+	width: 400px;
+	font-size: 0.875em;
+	color: #FFFFFF;
+	background: -moz-linear-gradient(top,#88F 0%,#448);
+	background: -webkit-gradient(linear, left top, left bottom, from(#88F), to(#448));
+	border-radius: 6px;
+	padding: 8px;
+}
+
+div.dialog ul.icon {
+	padding: 4px 8px;
+}
+div.dialog ul.icon li {
+	list-style: none;
+	float: left;
+	margin-right: 8px;
+}
+div.dialog ul.icon li img {
+	width: 16px;
+	vertical-align: middle;
+	margin-right: 4px;
+}
+
+div.dialog table {
+	padding: 4px;
+	width: 100%;
+}
+div.dialog table th {
+	padding-right: 8px;
+	text-align: left;
+	vertical-align: top;
+	text-decoration: none;
+	font-weight: normal;
+	word-break: keep-all;
+}
+
+/*=== コンテンツエリア =============================================*/
+div.tabbody {
+	clear:both;
+	position: relative;
+	z-index: 0;
+	display: flex;
+	background-color: #FFFFFF;
+}
+
+div.padding {
+	padding: 8px;
+	background-color: #FFFFFF;
+}
+
+/* 列 */
+div.tabbody>div.column {
+	float: left;
+}
+
+/* 列幅を変更するためのグリップ */
+div.tabbody>div.gripper {
+	float: left;
+	width: 16px;
+	height: 320px;
+	cursor: col-resize;
+}
+
+div.tabbody>div.gripper>div.bar {
+	width: 2px;
+	height: 64px;
+	background-color: #CCCCCC;
+	margin: 0px auto;
+}
+
+/*=== ウィジェット =================================================*/
+div.widget {
+	position: relative;
+	border: 1px #BBBBBB solid;
+	margin-bottom: 8px;
+}
+
+/* ウィジェットのタイトルバー */
+div.widget div.head {
+	font-size: 0.813em;
+	background-color: #CCCCCC;
+	border-top: 1px #DDDDDD solid;
+	border-bottom: 1px #BBBBBB solid;
+	padding: 0px 8px;
+	cursor: move;
+}
+
+div.widget div.head img {
+	width: 16px;
+	vertical-align: middle;
+	margin-right: 4px;
+}
+div.widget div.head img.button {
+	cursor: pointer;
+}
+
+div.widget div.head a {
+	color: #333333;
+	text-decoration: none;
+}
+div.widget div.head a:link {
+	color: #333333;
+}
+div.widget div.head a:visited {
+	color: #333333;
+}
+div.widget div.head a:hover {
+	color: #3333FF;
+	text-decoration: underline;
+}
+/* ウィジェットメニュー */
+div.widget div.menu {
+	display: none;
+	position:absolute;
+	z-index: 2;
+	right: 0px;
+	top: 20px;
+	font-size: 0.813em;
+	color: #FFFFFF;
+	padding: 4px 8px;
+	background: -moz-linear-gradient(top,#888 0%,#444);
+	background: -webkit-gradient(linear, left top, left bottom, from(#888), to(#444));
+	border-radius: 6px;
+}
+div.widget div.menu div.item {
+	cursor: pointer;
+	text-align: left;
+}
+div.widget div.menu div.item img {
+	margin-right: 4px;
+	vertical-align: middle;
+}
+
+/* ウィジェット本体 */
+div.widget div.body {
+	font-size: 0.813em;
+	text-align: center;
+/*	padding: 4px;*/
+}
+

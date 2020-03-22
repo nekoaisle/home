@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<link href="./style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+</style>
+<meta name="ROBOTS" content="NOINDEX,NOFOLLOW,NOARCHIVE" />
+<title>DS-Portal <!--~@macro head:title:text-->トップページ<!--@macro head:title:text~--></title>
+
+<!--~@macro head:add-->
+<!-- balloon -->
+<script type="text/javascript" src="./js/jquery.balloon.min.js"></script>
+<!-- colResizable -->
+<script type="text/javascript" src="./js/colResizable-1.3.js"></script>
+
+<script type="text/javascript">
+// <iframe>の高さ調整
+function adjust_frame( myF ){
+	var myC = myF.contentWindow.document.documentElement;
+	var measuredH;
+	try {
+		measuredH = myC.offsetHeight;
+	}
+	catch(e)
+	{
+	}
+
+	if (document.all || isNaN(measuredH) || measuredH == 0){
+		try {
+			measuredH = myC.scrollHeight;
+		}
+		catch(e)
+		{
+		}
+	}
+	if (isNaN(measuredH) || measuredH == 0) {
+		measuredH = 100; /* 大体の表示高さ */
+	}
+	myF.height = (measuredH + 10); /*  <iframe> 内の余白 */
+}
+
+$(function(){
+	//=== reload ボタン ==============================================
+	$("div.widget div.head img.reload").click(function(){
+		var parent = $(this).parents( ".widget" )[0];
+		var iframe = $(parent).find( "iframe" )[0];
+//		外部サイトの場合セキュリティエラーになる
+//		iframe.contentWindow.location.reload(true);
+		iframe.src = iframe.src;
+	} );
+
+	//=== preference ボタン ==========================================
+//	$("div.widget div.preference").dialog({
+//		autoOpen: false,
+//		title: '設定',
+//		closeOnEscape: true,
+//		modal: true,
+//		buttons: {
+//			"OK": function(){
+//				$(this).dialog('close');
+//			}
+//		}
+//	});
+
+	$("div.widget div.head img.preference").click(function(){
+//		var parent = $(this).parents( ".widget" )[0];
+//		var pref = $(parent).find( "div.preference" );
+//		$(pref).dialog('open');
+	} );
+
+	//=== バルーン ===================================================
+	$('.baloon').balloon({
+		  contents: null
+		, css: {
+			  color: "#FFFFFF"
+			, fontSize: "0.7em"
+			, backgroundColor: "#888888"
+			, opacity: "1.0"
+			, padding: "2px 8px"
+		}
+	});
+
+	//=== レイアウト変更 =============================================
+	var onSampleResized = function(e){
+		var columns = $(e.currentTarget).find("th");
+		var msg = "columns widths: ";
+		columns.each(function(){ msg += $(this).width() + "px; "; })
+		$("#sample2Txt").html(msg);
+		
+	};	
+
+	$("table.layout").colResizable({
+		liveDrag:true, 
+		gripInnerHtml:"<div class='grip'></div>", 
+		draggingClass:"dragging", 
+//		onResize:onSampleResized
+	});
+
+	//== タブ ========================================================
+	$('#tabdemo1').tabs();
+
+});
+</script>
+
+<style type="text/css">
+.grip{
+	width:2px;
+	height:30px;
+	margin-top:12px;
+	margin-left:4px;
+	background-color: #BBBBBB;
+	position:relative;
+	z-index:88;
+	cursor:e-resize;
+}
+
+.ui-widget-content {
+}
+
+.ui-state-default {
+	background: #DDDDDD !important;
+}
+
+.ui-state-active {
+	background: #FFFFFF !important;
+}
+
+</style>
+
+<!--@macro head:add~-->
+</head>
+<body>
+<div class="container">
+<!--
+//====================================================================
+// ヘッダー
+//====================================================================
+-->
+<div class="link_bar">
+<a href="http://www.google.co.jp" target="_blank"><img src="http://www.google.co.jp/favicon.ico" />検索</a>
+<br style="clear:both;" />
+</div>
+
+<!--
+//====================================================================
+// メインエリア
+//====================================================================
+-->
+<!--~@macro body:main-->
+<div class="main">
+
+<div class="search">
+	<div class="google">
+<!-- Google -->
+<center>
+<form method=get action="http://www.google.co.jp/search" target="_blank">
+<table class="google">
+	<tr><td>
+		<a href="http://www.google.co.jp/"><img src="http://www.google.com/logos/Logo_40wht.gif" border="0" alt="Google" align="absmiddle"></a>
+		<input type=text name=q size=31 maxlength=255 value="">
+		<input type="hidden" name=ie value=UTF-8>
+		<input type="hidden" name=oe value=UTF-8>
+		<input type="hidden" name=hl value="ja">
+		<input type="submit" name=btnG value="Google 検索">
+	</td></tr>
+</table>
+</form>
+</center>
+<!-- Google -->
+	</div>
+</div>
+
+<div class="contents" style='clear:both;' id="tabdemo1">
+	<ul>
+		<li><a href="#tab-home"><img src="./img/home.png" />Home</a></li>
+		<li><a href="#tab-news"><img src="./img/news.png" />NEWS</a></li>
+		<li><a href="#tab-misc">趣味</a></li>
+	</ul>
+	<div id="tab-home" class="tab_content">
+		<table class="layout" data-resizable-columns-id="layout-table">
+		<tr>
+		<!--左の列-->
+		<!--~m_aryCol00-->
+		<td>
+		<!--~@list m_aryCol00:row-->
+			<div class="widget">
+				<div class="head">
+					<!--~m_aryCol00["link"]--><a href="<!--~m_aryCol00["link"]~-->"><!--m_aryCol00["link"]~--><img src="<!--~m_aryCol00["icon"]~-->" /><!--~m_aryCol00["title"]~--><!--~m_aryCol00["link"]--></a><!--m_aryCol00["link"]~-->
+					<div style="float:right;">
+						<img class="preference baloon" title="設定" src="./img/preference.png" />
+						<img class="reload baloon" title="更新" src="./img/reload.png" />
+					</div>
+				</div>
+				<div class="body">
+					<iframe <!--~m_aryCol00["fit"]-->onLoad="adjust_frame(this)"<!--m_aryCol00["fit"]~--> src="<!--~m_aryCol00["file"]~-->" width="100%" height="<!--~m_aryCol00["height"]~-->">
+					</iframe>
+				</div>
+				<div class="preference">
+					<p>設定ダイアログ テスト</p>
+				</div>
+			</div>
+		<!--@list m_aryCol00:row~-->
+		</td>
+		<!--m_aryCol00~-->
+
+		<!--~m_aryCol01-->
+		<!--中央の列-->
+		<td>
+		<!--~@list m_aryCol01:row-->
+			<div class="widget">
+				<div class="head">
+					<!--~m_aryCol01["link"]--><a href="<!--~m_aryCol01["link"]~-->"><!--m_aryCol01["link"]~--><img src="<!--~m_aryCol01["icon"]~-->" /><!--~m_aryCol01["title"]~--><!--~m_aryCol01["link"]--></a><!--m_aryCol01["link"]~-->
+					<div style="float:right;">
+						<img class="reload baloon" title="更新" src="./img/reload.png" />
+					</div>
+				</div>
+				<div class="body">
+					<iframe <!--~m_aryCol01["fit"]-->onLoad="adjust_frame(this)"<!--m_aryCol01["fit"]~--> src="<!--~m_aryCol01["file"]~-->" width="100%" height="<!--~m_aryCol01["height"]~-->">
+					</iframe>
+				</div>
+			</div>
+		<!--@list m_aryCol01:row~-->
+		</td>
+		<!--m_aryCol01~-->
+
+		<!--~m_aryCol02-->
+		<!--右の列-->
+		<td>
+		<!--~@list m_aryCol02:row-->
+			<div class="widget">
+				<div class="head">
+					<!--~m_aryCol02["link"]--><a href="<!--~m_aryCol02["link"]~-->"><!--m_aryCol02["link"]~--><img src="<!--~m_aryCol02["icon"]~-->" /><!--~m_aryCol02["title"]~--><!--~m_aryCol02["link"]--></a><!--m_aryCol02["link"]~-->
+					<div style="float:right;">
+						<img class="reload baloon" title="更新" src="./img/reload.png" />
+					</div>
+				</div>
+				<div class="body">
+					<iframe <!--~m_aryCol02["fit"]-->onLoad="adjust_frame(this)"<!--m_aryCol02["fit"]~--> src="<!--~m_aryCol02["file"]~-->" width="100%" height="<!--~m_aryCol02["height"]~-->">
+					</iframe>
+				</div>
+			</div>
+		<!--@list m_aryCol02:row~-->
+		</td>
+		<!--m_aryCol02~-->
+
+		</tr>
+		</table>
+	</div>
+
+	<div id="tab-news" class="tab_content">
+		<table class="layout" data-resizable-columns-id="layout-table">
+		<tr>
+		<!--左の列-->
+		<!--~m_aryCol10-->
+		<td>
+		<!--~@list m_aryCol10:row-->
+			<div class="widget">
+				<div class="head">
+					<!--~m_aryCol10["link"]--><a href="<!--~m_aryCol10["link"]~-->"><!--m_aryCol10["link"]~--><img src="<!--~m_aryCol10["icon"]~-->" /><!--~m_aryCol10["title"]~--><!--~m_aryCol10["link"]--></a><!--m_aryCol10["link"]~-->
+					<div style="float:right;">
+						<img class="preference baloon" title="設定" src="./img/preference.png" />
+						<img class="reload baloon" title="更新" src="./img/reload.png" />
+					</div>
+				</div>
+				<div class="body">
+					<iframe <!--~m_aryCol10["fit"]-->onLoad="adjust_frame(this)"<!--m_aryCol10["fit"]~--> src="<!--~m_aryCol10["file"]~-->" width="100%" height="<!--~m_aryCol10["height"]~-->">
+					</iframe>
+				</div>
+				<div class="preference">
+					<p>設定ダイアログ テスト</p>
+				</div>
+			</div>
+		<!--@list m_aryCol10:row~-->
+		</td>
+		<!--m_aryCol10~-->
+
+		<!--~m_aryCol11-->
+		<!--中央の列-->
+		<td>
+		<!--~@list m_aryCol11:row-->
+			<div class="widget">
+				<div class="head">
+					<!--~m_aryCol11["link"]--><a href="<!--~m_aryCol11["link"]~-->"><!--m_aryCol11["link"]~--><img src="<!--~m_aryCol11["icon"]~-->" /><!--~m_aryCol11["title"]~--><!--~m_aryCol11["link"]--></a><!--m_aryCol11["link"]~-->
+					<div style="float:right;">
+						<img class="reload baloon" title="更新" src="./img/reload.png" />
+					</div>
+				</div>
+				<div class="body">
+					<iframe <!--~m_aryCol11["fit"]-->onLoad="adjust_frame(this)"<!--m_aryCol11["fit"]~--> src="<!--~m_aryCol11["file"]~-->" width="100%" height="<!--~m_aryCol11["height"]~-->">
+					</iframe>
+				</div>
+			</div>
+		<!--@list m_aryCol11:row~-->
+		</td>
+		<!--m_aryCol11~-->
+
+		<!--~m_aryCol12-->
+		<!--右の列-->
+		<td>
+		<!--~@list m_aryCol12:row-->
+			<div class="widget">
+				<div class="head">
+					<!--~m_aryCol12["link"]--><a href="<!--~m_aryCol12["link"]~-->"><!--m_aryCol12["link"]~--><img src="<!--~m_aryCol12["icon"]~-->" /><!--~m_aryCol12["title"]~--><!--~m_aryCol12["link"]--></a><!--m_aryCol12["link"]~-->
+					<div style="float:right;">
+						<img class="reload baloon" title="更新" src="./img/reload.png" />
+					</div>
+				</div>
+				<div class="body">
+					<iframe <!--~m_aryCol12["fit"]-->onLoad="adjust_frame(this)"<!--m_aryCol12["fit"]~--> src="<!--~m_aryCol12["file"]~-->" width="100%" height="<!--~m_aryCol12["height"]~-->">
+					</iframe>
+				</div>
+			</div>
+		<!--@list m_aryCol12:row~-->
+		</td>
+		<!--m_aryCol12~-->
+
+		</tr>
+		</table>
+	</div>
+	<div id="tab-misc" class="tab_content">
+		<table class="layout" data-resizable-columns-id="layout-table">
+		<tr>
+		<!--左の列-->
+		<!--~m_aryCol20-->
+		<td>
+		<!--~@list m_aryCol20:row-->
+			<div class="widget">
+				<div class="head">
+					<!--~m_aryCol20["link"]--><a href="<!--~m_aryCol20["link"]~-->"><!--m_aryCol20["link"]~--><img src="<!--~m_aryCol20["icon"]~-->" /><!--~m_aryCol20["title"]~--><!--~m_aryCol20["link"]--></a><!--m_aryCol20["link"]~-->
+					<div style="float:right;">
+						<img class="preference baloon" title="設定" src="./img/preference.png" />
+						<img class="reload baloon" title="更新" src="./img/reload.png" />
+					</div>
+				</div>
+				<div class="body">
+					<iframe <!--~m_aryCol20["fit"]-->onLoad="adjust_frame(this)"<!--m_aryCol20["fit"]~--> src="<!--~m_aryCol20["file"]~-->" width="100%" height="<!--~m_aryCol20["height"]~-->">
+					</iframe>
+				</div>
+				<div class="preference">
+					<p>設定ダイアログ テスト</p>
+				</div>
+			</div>
+		<!--@list m_aryCol20:row~-->
+		</td>
+		<!--m_aryCol20~-->
+
+		<!--~m_aryCol21-->
+		<!--中央の列-->
+		<td>
+		<!--~@list m_aryCol21:row-->
+			<div class="widget">
+				<div class="head">
+					<!--~m_aryCol21["link"]--><a href="<!--~m_aryCol21["link"]~-->"><!--m_aryCol21["link"]~--><img src="<!--~m_aryCol21["icon"]~-->" /><!--~m_aryCol21["title"]~--><!--~m_aryCol21["link"]--></a><!--m_aryCol21["link"]~-->
+					<div style="float:right;">
+						<img class="reload baloon" title="更新" src="./img/reload.png" />
+					</div>
+				</div>
+				<div class="body">
+					<iframe <!--~m_aryCol21["fit"]-->onLoad="adjust_frame(this)"<!--m_aryCol21["fit"]~--> src="<!--~m_aryCol21["file"]~-->" width="100%" height="<!--~m_aryCol21["height"]~-->">
+					</iframe>
+				</div>
+			</div>
+		<!--@list m_aryCol21:row~-->
+		</td>
+		<!--m_aryCol21~-->
+
+		<!--~m_aryCol22-->
+		<!--右の列-->
+		<td>
+		<!--~@list m_aryCol22:row-->
+			<div class="widget">
+				<div class="head">
+					<!--~m_aryCol22["link"]--><a href="<!--~m_aryCol22["link"]~-->"><!--m_aryCol22["link"]~--><img src="<!--~m_aryCol22["icon"]~-->" /><!--~m_aryCol22["title"]~--><!--~m_aryCol22["link"]--></a><!--m_aryCol22["link"]~-->
+					<div style="float:right;">
+						<img class="reload baloon" title="更新" src="./img/reload.png" />
+					</div>
+				</div>
+				<div class="body">
+					<iframe <!--~m_aryCol22["fit"]-->onLoad="adjust_frame(this)"<!--m_aryCol22["fit"]~--> src="<!--~m_aryCol22["file"]~-->" width="100%" height="<!--~m_aryCol22["height"]~-->">
+					</iframe>
+				</div>
+			</div>
+		<!--@list m_aryCol22:row~-->
+		</td>
+		<!--m_aryCol22~-->
+
+		</tr>
+		</table>
+	</div>
+</div>
+
+</div><!--main-->
+<!--@macro body:main~-->
+
+<!--
+//====================================================================
+// フッターエリア
+//====================================================================
+-->
+<div class="footer">
+	<hr>
+	Copyrigths &copy;2014- Prograrts.com
+</div>
+
+<!--
+//====================================================================
+//====================================================================
+//====================================================================
+-->
+</div><!--container-->
+</body>
+</html>

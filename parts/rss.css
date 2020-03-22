@@ -1,0 +1,161 @@
+/*=== タブバー =====================================================*/
+div.tab_bar {
+	display:flex;
+	padding-top: 4px;
+}
+div.tab_bar div.space_l {
+	flex: 0 0 8px;
+	border-bottom: 1px #88AADD solid;
+}
+div.tab_bar div.tab {
+	color: #000000;
+	text-align: center;
+	border: 1px #AAAAAA solid;
+	border-bottom: 1px #88AADD solid;
+	background-color: #DDDDDD;
+	padding: 2px 8px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	cursor:pointer;
+	outline:none;
+}
+
+div.tab_bar div.active{
+	background-color: #FFFFFF;
+	border: 1px #88AADD solid;
+	border-bottom: 0px;
+}
+
+div.tab_bar div.space_c {
+	flex: 0 0 2px;
+	border-bottom: 1px #88AADD solid;
+}
+
+div.tab_bar div.space_r {
+	flex: 1 0 8px;
+	border-bottom: 1px #88AADD solid;
+}
+
+/*=== ==============================================================*/
+div.rss {
+/*	border-top: 1px #CCCCCC solid;*/
+}
+
+div.page {
+	margin: 4px 0px;
+}
+
+/*=== 記事 =========================================================*/
+ul {
+	list-style-type: none;
+	padding-left: 0px;
+	font-size: 120%;
+	line-height: 1.3em;
+}
+li {
+	color: #000000;
+	word-break: break-all;
+	word-wrap: break-all;
+}
+/*li:nth-child(odd) {
+	background-color: #E8E8FF;
+}*/
+
+li.simple {
+	padding: 4px 4px;
+}
+
+li.simple:nth-child(odd) {
+	background-color: #E8FFE8;
+}
+
+/* 既読 */
+li.readed {
+/*	opacity: 0.7;*/
+	color: #888888;
+	font-size: 90%;
+}
+
+/*li.readed:nth-child(odd) {
+/*	opacity: 0.7;
+	background-color: #E8FFE8;
+}*/
+
+li a {
+	color: #0000CC;
+	text-decoration: none;
+}
+li a:hover,
+li.readed a:hover
+{
+	text-decoration: underline;
+}
+li.readed a {
+	color: #884444;
+}
+li img {
+	width:44px;
+	height: 44px;
+	float: left;
+	margin-right: 0.5em;
+}
+
+li div.title {
+	padding: 4px 4px 2px;
+	background-color: #DDDDDD;
+}
+
+/*li:nth-child(odd) div.title {
+	background-color: #D8D8FF;
+}*/
+li div.desc {
+	padding: 4px 4px;
+}
+
+/*=== 境界線 =======================================================*/
+div.border {
+	height: 0px;
+	margin: 4px 8px;
+	border-top: 1px #CCC solid;
+}
+
+/*=== ナビボックス =================================================*/
+div.navi_box {
+	display: flex;
+	padding: 0px 8px;
+	align-items: center;
+}
+
+div.navi_box>div{
+	margin: 0px 2px;
+}
+div.navi_box div.top,
+div.navi_box div.prev,
+div.navi_box div.next,
+div.navi_box div.last
+{
+/*	min-height: 22px;*/
+}
+div.navi_box div.unread {
+	height: 14px;
+}
+div.navi_box div.pos {
+	height: 14px;
+}
+div.navi_box div.space{
+	flex: 1;
+}
+
+div.navi_box div.button {
+	color: #000;
+	text-align: center;
+	background: -moz-linear-gradient(top,#DDF 0%,#CCE);
+	background: -webkit-gradient(linear, left top, left bottom, from(#DDF), to(#CCE));
+	border-radius: 6px;
+	padding: 2px 8px;
+	cursor: pointer;
+}
+
+div.navi_box div.disabled {
+	opacity: 0.3;
+}

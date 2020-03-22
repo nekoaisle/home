@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+  <title>jQuery Resizable Columns</title>
+  <meta name="description" content="">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-responsive.css">
+  <link rel="stylesheet" href="css/jquery.resizableColumns.css">
+</head>
+<body>
+    <table class="table table-bordered" data-resizable-columns-id="demo-table-v2">
+      <thead>
+        <tr>
+          <th data-resizable-column-id="#">#</th>
+          <th data-resizable-column-id="first_name">First Name</th>
+          <th data-resizable-column-id="last_name">Last Name</th>
+          <th data-resizable-column-id="username" id="username-column" data-noresize>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+
+  <script src="/js/jquery-1.10.1.min.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/jquery.resizableColumns.js"></script>
+  <script>
+
+    $(function(){
+      $("table").resizableColumns({
+        store: store
+      });
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+a:link    { color: #0066FF; }
+a:visited { color: #FF6600; }
+
+html {
+	height:100%;
+}
+
+body {
+	width: 100%;
+	height: 99%;
+	background:#FFFFFF;
+	color:#444444;
+	font-size: 1.0em;
+	font-family:Meiryo,"メイリオ","Hiragino Kaku Gothic Pro","ヒラギノ角ゴ Pro W3",Osaka,"MS P Gothic","ＭＳ Ｐゴシック",Verdana,Arial,sans-serif;
+	line-height:1.3em;
+	margin: 0px;
+	padding: 0px;
+}
+
+* html body {	/* for IE6 */
+	font-family:Meiryo,"メイリオ","ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
+}
+
+input, select {
+	border: 1px #CCCCCC solid;
+	color:#000000;
+	font-size: 1.0em;
+}
+
+input, textarea {
+	padding: 4px 4px;
+}
+
+textarea {
+	width:98%;
+	border: 1px #CCCCCC solid;
+	color:#000000;
+	padding: 4px 4px 4px;
+	font-size: 1.0em;
+}
+
+h1 {
+	font-size: 1.250em;
+}
+
+h2 {
+	font-size: 1.125em;
+}
+
+h3 {
+	font-size: 1.000em;
+}
+
+hr {
+	width: 100%;
+	margin: 0px;
+	border-width: 1px 0px 0px 0px;
+	border-style: solid;
+	border-color: #666666;
+	height: 1px;
+}
+
+body {
+	display: flex;
+	flex-direction: column;			/* 子要素の配置方向 */
+}
+
+/**
+ * ボタン領域
+ */
+#button {
+	display: flex;
+	flex-direction: row;			/* 子要素の配置方向 */
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#button>a {
+	flex: 0 0 auto;
+}
+
+#button img {
+	margin-left: 1em;
+	width: 32px;
+}
+
+/*====================================================================
+	検索エリア
+====================================================================*/
+#search {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+	padding: 8px 0px;
+}
+
+#search>div.google {
+	border: 1px #CCCCCC solid;
+	background-color: #FFFFFF;
+	border-radius: 6px;
+	opacity: 0.90;
+}
+
+#search>div.item {
+	padding: 4px 8px;
+	border: 1px #CCCCCC solid;
+	background-color: #EEEEFF;
+	border-radius: 6px;
+	opacity: 0.90;
+
+	flex: 1 1 256px;
+}
+
+#search>div.space {
+	flex-basis: 8px;
+}
+
+#search div.form {
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+#search div.form div.icon{
+	padding-right: 4px;
+}
+
+#search div.form div.text{
+	flex: 1 1 128px;
+}
+
+#search div.form div.text input{
+	width: 100%;
+}
+
+#search div.form div.button input{
+}
+
+/**
+ * ニュース記事領域
+ */
+div.feeds {
+	flex: 1 1;
+
+	display: flex;
+	flex-direction: row;		/* 子要素の配置方向 */
+	flex-wrap: nowrap;			/* 子要素の折り返し */
+
+    word-wrap:break-word;
+}
+
+div.feed {
+	flex: 1 1 384px;
+	margin-left: 1em;
+
+	display: flex;
+	flex-direction: column;			/* 子要素の配置方向 */
+}
+
+div.feed:last-child {
+	margin-right: 1em;
+}
+
+div.feed>div.header {
+	flex: 0 0 auto;
+
+	padding: 2px 8px;
+	margin-bottom: 4px;
+	border: 1px #CCCCCC solid;
+
+	display: flex;
+	flex-direction: row;
+}
+
+div.feed>div.header div.title{
+	flex: 1 1 128px;
+}
+
+div.feed>div.header div.space{
+	flex: 0 0 8px;
+}
+
+div.feed>div.header div.count{
+	font-size: 0.9em;
+	color: #0000FF;
+}
+div.feed>div.header div.date{
+	font-size: 0.9em;
+	color: #8888FF;
+}
+
+div.feed>div.header div.reload {
+}
+div.feed>div.header div.reload button {
+	text-align: right;
+	width: 18px;
+	height: 18px;
+	border: 1px #CCCCCC solid;
+	background: url(../img/refresh.png) left top no-repeat;
+}
+
+div.feed>div.articles {
+	flex: 1 1 384px;
+	overflow: scroll;   /* スクロール表示 */ 
+	height: 100%;
+}
+
+div.feeds li.read {
+	filter:alpha(opacity=50);
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+}
+

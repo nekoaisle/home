@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<link href="./style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+</style>
+<meta name="ROBOTS" content="NOINDEX,NOFOLLOW,NOARCHIVE" />
+<title>DS-Portal <!--~@macro head:title:text-->トップページ<!--@macro head:title:text~--></title>
+
+<!--~@macro head:add-->
+<script src="./js/dspLayout.js"></script>
+<script src="./js/store.js"></script>
+<script src="./js/md5.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	//=== レイアウト変更 =============================================
+	$('div.contents').dspLayout({
+		container: 'div.contents',	// 表全体のコンテナ
+		dropper: 'div.drop',		// 列のコンテナ(ドロップ領域)
+		gripper: 'div.gripper',		// 列幅移動グリップ
+		dragger: 'div.drag',		// 移動可能領域
+	});
+
+	//=== バルーン ===================================================
+	$('.balloon').balloon({
+		  contents: null
+		, css: {
+			  color: "#FFFFFF"
+			, fontSize: "0.7em"
+			, backgroundColor: "#888888"
+			, opacity: "1.0"
+			, padding: "2px 8px"
+		}
+	});
+
+	//=== reload ボタン ==============================================
+	$("div.widget div.head img.reload").click(function(event){
+		// 下の要素にイベントを伝えない
+		event.stopPropagation();
+
+		var parent = $(this).closest(".widget");
+		var iframe = parent.find("iframe")[0];
+		var src = iframe.src;
+		// ハッシュを除去
+		src = src.split("#")[0];
+		// クエリーを除去
+		src = src.split("?")[0];
+		// リロード
+		iframe.src = src;
+	});
+
+	//=== ウィジェットのoption ボタン ================================
+	$("div.widget div.head img.option").click(function(event){
+		// 下の要素にイベントを伝えない
+		event.stopPropagation();
+
+		//============================================================
+		var parent = $(this).closest("div.widget");
+		var button = $(this);
+		var option = parent.find('div.option');
+		var body   = parent.find('div.body'  );
+
+		if (button.hasClass( 'selected') ){
+			// option非表示
+			button.removeClass('selected');
+			option.slideUp('fast');
+			body.slideDown('fast');
+		} else {
+			// 表示しているメニューをすべて閉じる
+//			$("div.widget div.head img.option").removeClass('selected').next('div.menu').hide();
+			// option表示
+			button.addClass('selected');
+			option.slideDown('fast');
+			body.slideUp('fast');
+		}
+	});
+
+	//=== ウィジェットの設定ページを表示 =============================
+	$("div.widget div.option li.preference").click(function(event){
+		event.stopPropagation();
+
+		// src に ?PREFERENCE クエリーを追加
+		var parent = $(this).closest("div.widget");
+		var button = parent.find('img.option');
+		var option = parent.find('div.option');
+		var body   = parent.find('div.body'  );
+
+		// optionを非表示, bodyを表示
+		button.removeClass('selected');
+		option.slideUp('fast');
+		body.slideDown('fast');
+
+		var iframe = parent.find("iframe")[0];
+		var src = iframe.src;
+		var a = src.split("?");
+		var src = a[0] + "?PREFERENCE"
+		iframe.src = src;
+	});
+
+	//=== iframeの高さを調整 =========================================
+//	$('iframe.autoHeight').load(function(){
+//		var h = this.contentWindow.document.documentElement.scrollHeight;
+//		$(this).height(h);
+//	});
+//	// 即実行
+//	$('iframe.autoHeight').triggerHandler('load');
+
+	// ロードが完了した
+	$(window).load( function () {
+		// このページを持つ親ウィンドウのiframeの高さを調整
+		$(window.frameElement).css("height",$("body").height());
+	});
+});
+</script>
+
+<!--@macro head:add~-->
+</head>
+<body>
+<div class="container">
+<!--
+//====================================================================
+// ヘッダー
+//====================================================================
+-->
+<!--~@macro body:header-->
+<!--@macro body:header~-->
+
+<!--
+//====================================================================
+// メインエリア
+//====================================================================
+-->
+<!--~@macro body:main-->
+<div class="main">
+<div class="padding">
+<div class="contents" id="tab<!--~m_strTabNo~-->">
+<!--==================================================================
+    左の列
+===================================================================-->
+<!--~m_aryCol0-->
+<div class="drop" id="col0">
+<!--~@list m_aryCol0:row-->
+	<div class="widget drag" id="row0<!--~key(m_aryCol0)~-->">
+		<!-- タイトルバー -->
+		<div class="head">
+			<!--~m_aryCol0["link"]--><a href="<!--~m_aryCol0["link"]~-->"><!--m_aryCol0["link"]~-->
+				<!--~m_aryCol0["icon"]--><img src="<!--~m_aryCol0["icon"]~-->" /><!--m_aryCol0["icon"]~--><!--~m_aryCol0["title"]~-->
+			<!--~m_aryCol0["link"]--></a><!--m_aryCol0["link"]~-->
+			<div style="float:right;">
+				<img class="option balloon" title="設定" src="./img/option.png" />
+				<img class="reload balloon" title="更新" src="./img/reload.png" />
+			</div>
+		</div>
+		<!-- オプションメニュ -->
+		<div class="option" style="display:none;">
+			<ul>
+				<li class="preference">
+					<img title="設定" src="./img/preference.png" />設定
+				</li>
+				<li class="remove">
+					<img title="削除" src="./img/remove.png" />削除
+				</li>
+			</ul>
+		</div>
+		<!-- 本体 -->
+		<div class="body">
+			<iframe<!--~m_aryCol0["fit"]--> class="autoHeight"<!--m_aryCol0["fit"]~--> src="/parts/<!--~m_aryCol0["id"]~-->.html" width="100%" height="<!--~m_aryCol0["height"]~-->">
+			</iframe>
+		</div>
+	</div>
+<!--@list m_aryCol0:row~-->
+</div>
+<!--m_aryCol0~-->
+<!--==================================================================
+    中央の列
+===================================================================-->
+<!--~m_aryCol1-->
+<div class="gripper"><div class="bar"></div></div>
+<div class="drop" id="col1">
+<!--~@list m_aryCol1:row-->
+	<div class="widget drag" id="row1<!--~key(m_aryCol1)~-->">
+		<!-- タイトルバー -->
+		<div class="head">
+			<!--~m_aryCol1["link"]--><a href="<!--~m_aryCol1["link"]~-->"><!--m_aryCol1["link"]~-->
+				<!--~m_aryCol1["icon"]--><img src="<!--~m_aryCol1["icon"]~-->" /><!--m_aryCol1["icon"]~--><!--~m_aryCol1["title"]~-->
+			<!--~m_aryCol1["link"]--></a><!--m_aryCol1["link"]~-->
+			<div style="float:right;">
+				<img class="option balloon" title="設定" src="./img/option.png" />
+				<img class="reload balloon" title="更新" src="./img/reload.png" />
+			</div>
+		</div>
+		<!-- オプションメニュ -->
+		<div class="option" style="display:none;">
+			<ul>
+				<li class="preference">
+					<img title="設定" src="./img/preference.png" />設定
+				</li>
+				<li class="remove">
+					<img title="削除" src="./img/remove.png" />削除
+				</li>
+			</ul>
+		</div>
+		<!-- 本体 -->
+		<div class="body">
+			<iframe<!--~m_aryCol1["fit"]--> class="autoHeight"<!--m_aryCol1["fit"]~--> src="/parts/<!--~m_aryCol1["id"]~-->.html" width="100%" height="<!--~m_aryCol1["height"]~-->">
+			</iframe>
+		</div>
+	</div>
+<!--@list m_aryCol1:row~-->
+</div>
+<!--m_aryCol1~-->
+<!--==================================================================
+    右の列
+===================================================================-->
+<!--~m_aryCol2-->
+<div class="gripper"><div class="bar"></div></div>
+<div class="drop" id="col2">
+<!--~@list m_aryCol2:row-->
+	<div class="widget drag" id="row2<!--~key(m_aryCol2)~-->">
+		<!-- タイトルバー -->
+		<div class="head">
+			<!--~m_aryCol2["link"]--><a href="<!--~m_aryCol2["link"]~-->"><!--m_aryCol2["link"]~-->
+				<!--~m_aryCol2["icon"]--><img src="<!--~m_aryCol2["icon"]~-->" /><!--m_aryCol2["icon"]~--><!--~m_aryCol2["title"]~-->
+			<!--~m_aryCol2["link"]--></a><!--m_aryCol2["link"]~-->
+			<div style="float:right;">
+				<img class="option balloon" title="設定" src="./img/option.png" />
+				<img class="reload balloon" title="更新" src="./img/reload.png" />
+			</div>
+		</div>
+		<!-- オプションメニュ -->
+		<div class="option" style="display:none;">
+			<ul>
+				<li class="preference">
+					<img title="設定" src="./img/preference.png" />設定
+				</li>
+				<li class="remove">
+					<img title="削除" src="./img/remove.png" />削除
+				</li>
+			</ul>
+		</div>
+		<!-- 本体 -->
+		<div class="body">
+			<iframe<!--~m_aryCol2["fit"]--> class="autoHeight"<!--m_aryCol2["fit"]~--> src="/parts/<!--~m_aryCol2["id"]~-->.html" width="100%" height="<!--~m_aryCol2["height"]~-->">
+			</iframe>
+		</div>
+	</div>
+<!--@list m_aryCol2:row~-->
+</div>
+<!--m_aryCol2~-->
+
+<div style="clear:both"></div>
+
+</div><!--contents-->
+</div><!--padding-->
+</div><!--main-->
+<!--@macro body:main~-->
+
+<!--
+//====================================================================
+// フッターエリア
+//====================================================================
+-->
+<!--~@macro body:footer-->
+<!--@macro body:footer~-->
+
+<!--
+//====================================================================
+//====================================================================
+//====================================================================
+-->
+</div><!--container-->
+</body>
+</html>
